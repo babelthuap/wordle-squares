@@ -13,6 +13,10 @@
       padding: 8px 32px;
     }
 
+    a {
+      color: white;
+    }
+
     #inputs {
       display: flex;
       flex-direction: column;
@@ -23,6 +27,11 @@
     }
 
     @media (min-width: 640px) {
+      body {
+        width: 800px;
+        margin: auto;
+      }
+
       #inputs {
         flex-direction: row;
       }
@@ -51,6 +60,7 @@
 
 <body>
   <h1>Wordle Squares</h1>
+  <p>Enter a <a href="https://www.nytimes.com/games/wordle/index.html">Wordle</a> solution and get a list of possible Wordle games that end with that solution <em>and where every column is also a valid Wordle word.</em></p>
   <div id="inputs">
     <div><label for="solution">Solution: </label><input type="text" id="solution" maxlength="5"></div>
     <div><input type="checkbox" name="hardmode" id="hardmode"><label for="hardmode">Hardmode</label></div>
