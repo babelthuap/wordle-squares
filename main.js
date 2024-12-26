@@ -4,6 +4,7 @@ fetch('wordle_squares.txt').then(resp => resp.text()).then(wsData => {
   hardmode.addEventListener('input', () => update(squares));
   asymmetric.addEventListener('input', () => update(squares));
   update(squares);
+  solution.focus();
 });
 
 function update(squares) {
@@ -19,7 +20,7 @@ function update(squares) {
                            .filter(x => !hardmodeOnly || validHardmode(x))
                            .filter(x => !asymmetricOnly || isAsymmetric(x));
   if (validSquares.length === 0) {
-    output.innerText = 'NO SOLUTIONS';
+    output.innerText = 'NO VALID SQUARES';
     return;
   }
   output.innerText = '';
