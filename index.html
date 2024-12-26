@@ -13,12 +13,31 @@
       padding: 8px 32px;
     }
 
+    #inputs {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #inputs > div {
+      margin-bottom: 8px;
+    }
+
+    @media (min-width: 640px) {
+      #inputs {
+        flex-direction: row;
+      }
+      
+      #inputs > div {
+        margin-right: 16px;
+      }
+    }
+
     input {
       font-family: monospace;
     }
 
     hr {
-      margin: 16px 0;
+      margin-bottom: 16px;
     }
 
     #output > div {
@@ -32,10 +51,10 @@
 
 <body>
   <h1>Wordle Squares</h1>
-  <div>
-    <input type="text" id="solution" maxlength="5">
-    <input type="checkbox" name="hardmode" id="hardmode"><label for="hardmode">Hardmode</label>
-    <input type="checkbox" name="asymmetric" id="asymmetric"><label for="asymmetric">Asymmetric</label>
+  <div id="inputs">
+    <div><input type="text" id="solution" maxlength="5"></div>
+    <div><input type="checkbox" name="hardmode" id="hardmode"><label for="hardmode">Hardmode</label></div>
+    <div><input type="checkbox" name="asymmetric" id="asymmetric"><label for="asymmetric">Asymmetric</label></div>
   </div>
   <hr />
   <div id="output"></div>
