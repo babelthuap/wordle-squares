@@ -31,11 +31,13 @@ function update(squares, validSolutions) {
                            .filter(x => !asymmetricOnly || isAsymmetric(x));
   if (validSquares.length === 0) {
     output.innerHTML = '<p>NOT A VALID WORDLE SOLUTION</p>';
+    console.time('closest');
     const closest =
         validSolutions.map(word => ({word, dist: wordDist(word, soln)}))
             .sort((a, b) => a.dist - b.dist)
             .slice(0, 4)
             .map(({word}) => word);
+    console.timeEnd('closest');
     output.innerHTML += '<p><em>Did you mean:</em> ' +
         closest.map(w => `<a href>${w}</a>`).join(', ') + '</p>';
     return;
@@ -131,13 +133,13 @@ function wordDist(a, b) {
   return dist;
 }
 
-// Use the taxicab metric 'cause it's linear and shit
+// Use the actual Euclidean metric because we wanna add these together
 function charDist(c1, c2) {
   const coords1 = KEY_COORDS[c1];
   const coords2 = KEY_COORDS[c2];
   if (coords1 === undefined || coords2 === undefined) {
-    // 1 + 1.5, i.e. the distance from the top row to the number row
-    return 2.5;
+    // sqrt(1 + 1.5**2), i.e. the distance from the top row to the number row
+    return 1.803;
   }
-  return (coords1.x - coords2.x) + (coords1.y - coords2.y);
+  return Math.sqrt((coords1.x - coords2.x) ** 2 + (coords1.y - coords2.y) ** 2);
 }
