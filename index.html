@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wordle Squares</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: monospace;
+      padding: 8px 32px;
+    }
+
+    hr {
+      margin: 16px 0;
+    }
+  </style>
+  <script src="main.js" async></script>
+</head>
+
+<body>
+  <h1>Wordle Squares</h1>
+  <div>
+    <input type="text" id="solution">
+    <input type="checkbox" name="hardmode" id="hardmode"><label for="hardmode">Hardmode</label>
+    <input type="checkbox" name="asymmetric" id="asymmetric"><label for="asymmetric">Asymmetric</label>
+  </div>
+  <hr />
+  <div id="output"></div>
+</body>
+
+</html>
