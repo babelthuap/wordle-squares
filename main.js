@@ -31,13 +31,11 @@ function update(squares, validSolutions) {
                            .filter(x => !asymmetricOnly || isAsymmetric(x));
   if (validSquares.length === 0) {
     output.innerHTML = '<p>NOT A VALID WORDLE SOLUTION</p>';
-    console.time('close');
     const closest =
         validSolutions.map(word => ({word, dist: wordDist(word, soln)}))
             .sort((a, b) => a.dist - b.dist)
             .slice(0, 4)
             .map(({word}) => word);
-    console.timeEnd('close');
     output.innerHTML += '<p><em>Did you mean:</em> ' +
         closest.map(w => `<a href>${w}</a>`).join(', ') + '</p>';
     return;
