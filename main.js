@@ -25,7 +25,7 @@ function update(squares) {
   output.innerText = '';
   for (const square of validSquares) {
     const div = document.createElement('div');
-    div.innerText = square.join(' ');
+    div.innerText = square.map(word => word.split('').join(' ')).join('\n');
     output.append(div);
   }
 }

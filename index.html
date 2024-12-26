@@ -20,6 +20,12 @@
     hr {
       margin: 16px 0;
     }
+
+    #output > div {
+      display: inline-block;
+      margin-right: 24px;
+      margin-bottom: 16px;
+    }
   </style>
   <script src="main.js" async></script>
 </head>
@@ -27,7 +33,7 @@
 <body>
   <h1>Wordle Squares</h1>
   <div>
-    <input type="text" id="solution">
+    <input type="text" id="solution" maxlength="5">
     <input type="checkbox" name="hardmode" id="hardmode"><label for="hardmode">Hardmode</label>
     <input type="checkbox" name="asymmetric" id="asymmetric"><label for="asymmetric">Asymmetric</label>
   </div>
