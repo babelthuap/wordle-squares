@@ -18,16 +18,22 @@
       color: green;
     }
 
+    .source-code {
+      float: right;
+      margin-top: 16px;
+      text-align: right;
+    }
+
     a {
       color: white;
     }
 
-    #inputs {
+    .inputs {
       display: flex;
       flex-direction: column;
     }
 
-    #inputs > div {
+    .inputs > div {
       margin-bottom: 8px;
     }
 
@@ -37,11 +43,11 @@
         margin: auto;
       }
 
-      #inputs {
+      .inputs {
         flex-direction: row;
       }
       
-      #inputs > div {
+      .inputs > div {
         margin-right: 16px;
       }
     }
@@ -64,9 +70,12 @@
 </head>
 
 <body>
+  <a href="https://github.com/babelthuap/wordle-squares" target="_blank" class="source-code">
+    source<br>code
+  </a>
   <h1>Wordle Squares</h1>
   <p>Enter a <a href="https://www.nytimes.com/games/wordle/index.html">Wordle</a> solution and get a list of possible Wordle games that end with that solution <em>and where every column is also a valid Wordle word.</em></p>
-  <div id="inputs">
+  <div class="inputs">
     <div><label for="solution">Solution: </label><input type="text" id="solution" maxlength="5"></div>
     <div><input type="checkbox" name="hardmode" id="hardmode"><label for="hardmode">Hardmode</label></div>
     <div><input type="checkbox" name="asymmetric" id="asymmetric"><label for="asymmetric">Asymmetric</label></div>
