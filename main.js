@@ -131,12 +131,13 @@ function wordDist(a, b) {
   return dist;
 }
 
+// Use the taxicab metric 'cause it's linear and shit
 function charDist(c1, c2) {
   const coords1 = KEY_COORDS[c1];
   const coords2 = KEY_COORDS[c2];
   if (coords1 === undefined || coords2 === undefined) {
-    // 1 + 1.5**2, i.e. the distance from the top row to the number row
-    return 3.25;
+    // 1 + 1.5, i.e. the distance from the top row to the number row
+    return 2.5;
   }
-  return (coords1.x - coords2.x) ** 2 + (coords1.y - coords2.y) ** 2;
+  return (coords1.x - coords2.x) + (coords1.y - coords2.y);
 }
