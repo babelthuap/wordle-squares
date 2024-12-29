@@ -10,6 +10,9 @@ fetch('wordle_squares.txt').then(resp => resp.text()).then(wsData => {
   solution.focus();
 
   output.addEventListener('click', e => {
+    if (e.target.nodeName !== 'A') {
+      return;
+    }
     e.preventDefault();
     solution.value = e.target.innerText;
     handleInput();
