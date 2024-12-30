@@ -2,7 +2,7 @@ fetch('wordle_squares.txt').then(resp => resp.text()).then(wsData => {
   const squares = split(wsData, 25);
   const validSolutions = [...new Set(squares.map(s => s.slice(-5)))].sort();
 
-  const handleInput = () => update(squares, validSolutions);
+  const handleInput = (pushState = true) => update(squares, validSolutions, pushState);
   solution.addEventListener('input', handleInput);
   hardmode.addEventListener('input', handleInput);
   asymmetric.addEventListener('input', handleInput);
@@ -17,9 +17,17 @@ fetch('wordle_squares.txt').then(resp => resp.text()).then(wsData => {
     solution.value = e.target.innerText;
     handleInput();
   });
+
+  window.addEventListener("popstate", e => {
+    const word = e.state && e.state.w;
+    if (word && word.length === 5) {
+      solution.value = word;
+      handleInput(/* pushState= */ false);
+    }
+  });
 });
 
-function update(squares, validSolutions) {
+function update(squares, validSolutions, pushState) {
   output.innerHTML = '';
   const soln = solution.value.toUpperCase();
   if (soln.length !== 5) {
@@ -45,7 +53,9 @@ function update(squares, validSolutions) {
         closest.map(w => `<a href>${w}</a>`).join(', ') + '</p>';
     return;
   }
-  modifyQueryParam('w', soln);
+  if (pushState) {
+    modifyQueryParam('w', soln);
+  }
   for (const square of validSquares) {
     const div = document.createElement('div');
     div.innerText = square.map(word => word.split('').join(' ')).join('\n');
@@ -92,7 +102,7 @@ function validHardmode(soln) {
 function modifyQueryParam(key, value) {
   const url = new URL(window.location.href);
   url.searchParams.set(key, value);
-  window.history.pushState(null, '', url.toString());
+  window.history.pushState({[key]: value}, '', url.toString());
 }
 
 const KEY_COORDS = {
