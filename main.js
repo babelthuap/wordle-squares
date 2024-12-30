@@ -45,6 +45,7 @@ function update(squares, validSolutions) {
         closest.map(w => `<a href>${w}</a>`).join(', ') + '</p>';
     return;
   }
+  modifyQueryParam('w', soln);
   for (const square of validSquares) {
     const div = document.createElement('div');
     div.innerText = square.map(word => word.split('').join(' ')).join('\n');
@@ -86,6 +87,12 @@ function validHardmode(soln) {
     }
   }
   return true;
+}
+
+function modifyQueryParam(key, value) {
+  const url = new URL(window.location.href);
+  url.searchParams.set(key, value);
+  window.history.pushState(null, '', url.toString());
 }
 
 const KEY_COORDS = {

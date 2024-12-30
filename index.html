@@ -83,6 +83,14 @@
   </div>
   <hr />
   <div id="output"></div>
+  <script>
+    (() => {
+      const word = new URLSearchParams(window.location.search).get('w');
+      if (word && word.length === 5) {
+        solution.value = word;
+      }
+    })();
+  </script>
 </body>
 
 </html>
