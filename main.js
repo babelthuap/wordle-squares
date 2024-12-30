@@ -19,7 +19,7 @@ fetch('wordle_squares.txt').then(resp => resp.text()).then(wsData => {
   });
 
   window.addEventListener("popstate", e => {
-    const word = e.state && e.state.w;
+    const word = e.state && e.state.word;
     if (word && word.length === 5) {
       solution.value = word;
       handleInput(/* pushState= */ false);
@@ -54,7 +54,7 @@ function update(squares, validSolutions, pushState) {
     return;
   }
   if (pushState) {
-    modifyQueryParam('w', soln);
+    modifyQueryParam('word', soln);
   }
   for (const square of validSquares) {
     const div = document.createElement('div');

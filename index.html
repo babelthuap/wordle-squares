@@ -85,7 +85,7 @@
   <div id="output"></div>
   <script>
     (() => {
-      const word = new URLSearchParams(window.location.search).get('w');
+      const word = new URLSearchParams(window.location.search).get('word');
       if (word && word.length === 5) {
         solution.value = word;
       }
